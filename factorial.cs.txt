@@ -1,0 +1,27 @@
+using System;
+using System.Diagnostics;
+
+class Program
+{
+    // Function to calculate factorial using recursion
+    public static long Factorial(int n)
+    {
+        if (n == 0 || n == 1)
+            return 1;
+        return n * Factorial(n - 1);
+    }
+
+    static void Main()
+    {
+        int n = 10; // Change this to compute the factorial of a different number
+
+        // Measure runtime using Stopwatch
+        Stopwatch stopwatch = Stopwatch.StartNew();
+        long result = Factorial(n);
+        stopwatch.Stop();
+
+        // Display the result and runtime
+        Console.WriteLine($"Factorial of {n} is: {result}");
+        Console.WriteLine($"Runtime: {stopwatch.Elapsed.TotalMilliseconds} milliseconds");
+    }
+}

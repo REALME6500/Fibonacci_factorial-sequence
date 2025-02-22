@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+
+class Program
+{
+    // Using memoization to calculate Fibonacci
+    public static long Fibonacci(int n, Dictionary<int, long> memo = null)
+    {
+        if (memo == null)
+            memo = new Dictionary<int, long>();
+
+        // Return cached value if already computed
+        if (memo.ContainsKey(n))
+            return memo[n];
+        if (n == 0)
+            return 0;
+        if (n == 1)
+            return 1;
+
+        // Compute Fibonacci and cache it
+        memo[n] = Fibonacci(n - 1, memo) + Fibonacci(n - 2, memo);
+        return memo[n];
+    }
+
+    static void Main()
+    {
+        int n = 30; // Change this to compute Fibonacci number at a different position
+
+        // Measure runtime using Stopwatch
+        Stopwatch stopwatch = Stopwatch.StartNew();
+        long result = Fibonacci(n);
+        stopwatch.Stop();
+
+        // Display the result and runtime
+        Console.WriteLine($"Fibonacci number at position {n} is: {result}");
+        Console.WriteLine($"Runtime: {stopwatch.Elapsed.TotalMilliseconds} milliseconds");
+    }
+}
